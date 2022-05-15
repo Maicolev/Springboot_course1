@@ -50,5 +50,4 @@ public class IndexController {
         model.addAttribute("title", "list of users");
         return "list";
     }
-
 }
