@@ -4,10 +4,9 @@ import com.firstproyect.springboot.app.demo.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,15 +38,21 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
+    public String list(Model model)
+    {
+        model.addAttribute("title", "list of users");
+        return "list";
+    }
+
+    @ModelAttribute("users")
+    public List<User> usersFill()
+    {
         List<User> users = Arrays.asList(
                 new User("Alberto","Grisales","alberto.grisales@test.com"),
                 new User("Juana","Pabón","juana.pabon@test.com"),
                 new User("Sandra","Saint","sandra.saint@test.com"),
                 new User("Angie","Ramirez","angie.ramirez@test.com"));
 
-        model.addAttribute("users", users);
-        model.addAttribute("title", "list of users");
-        return "list";
+        return users;
     }
 }
