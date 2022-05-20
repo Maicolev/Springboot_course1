@@ -2,6 +2,7 @@ package com.bagofideas.springboot.di.app.controllers;
 
 import com.bagofideas.springboot.di.app.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController
 {
     @Autowired
+    @Qualifier("MyComplexService")
     private IService service;
 
     @GetMapping({"/", "", "/index"})
