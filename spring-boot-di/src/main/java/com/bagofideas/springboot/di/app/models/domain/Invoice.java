@@ -1,4 +1,4 @@
-package com.bagofideas.springboot.di.app.domain;
+package com.bagofideas.springboot.di.app.models.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,5 +14,7 @@ public class Invoice
 
     @Autowired
     private Client client;
+
+    @Autowired
     private List <Item> items;
 }

@@ -1,4 +1,4 @@
-package com.bagofideas.springboot.di.app.domain;
+package com.bagofideas.springboot.di.app.models.domain;
 
 public class Item
 {

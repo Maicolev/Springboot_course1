@@ -1,4 +1,4 @@
-package com.bagofideas.springboot.di.app.domain;
+package com.bagofideas.springboot.di.app.models.domain;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

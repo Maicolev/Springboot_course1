@@ -1,6 +1,4 @@
-package com.bagofideas.springboot.di.app.services;
-
-import org.springframework.stereotype.Component;
+package com.bagofideas.springboot.di.app.models.services;
 
 //@Component("MyComplexService")
 public class MyServiceComplex implements IService

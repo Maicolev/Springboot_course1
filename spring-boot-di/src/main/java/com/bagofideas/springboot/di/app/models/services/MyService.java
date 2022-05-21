@@ -1,7 +1,4 @@
-package com.bagofideas.springboot.di.app.services;
-
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+package com.bagofideas.springboot.di.app.models.services;
 
 //@Primary
 //@Component("MySimpleService")
