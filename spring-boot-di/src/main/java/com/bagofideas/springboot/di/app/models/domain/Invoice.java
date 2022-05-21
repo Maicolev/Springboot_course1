@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 @Component
@@ -17,6 +19,19 @@ public class Invoice
 
     @Autowired
     private List <Item> items;
+
+    @PostConstruct
+    public void intializer()
+    {
+        client.setName(client.getName().concat(" ").concat("José"));
+        description = description.concat(" for client: ").concat(client.getName());
+    }
+
+    @PreDestroy
+    public void destroy()
+    {
+        System.out.println("Invoice destroyed: ".concat(description));
+    }
 
     public String getDescription() {
         return description;
