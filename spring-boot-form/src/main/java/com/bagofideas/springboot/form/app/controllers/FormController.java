@@ -1,5 +1,6 @@
 package com.bagofideas.springboot.form.app.controllers;
 
+import com.bagofideas.springboot.form.app.models.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,14 @@ public class FormController
                           @RequestParam String password,
                           @RequestParam String email)
     {
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setEmail(email);
+
         model.addAttribute("title", "Form result");
-        model.addAttribute("userName", userName);
-        model.addAttribute("password", password);
-        model.addAttribute("email", email);
+        model.addAttribute("userName", user);
+
         return "result";
     }
 }
