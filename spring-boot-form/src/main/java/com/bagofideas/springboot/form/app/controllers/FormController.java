@@ -6,10 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("user")
 public class FormController
 {
     @GetMapping("/form")
@@ -25,14 +28,14 @@ public class FormController
     }
 
     @PostMapping("/form")
-    public String process(@Valid User user, BindingResult validationResult, Model model)
+    public String process(@Valid User user, BindingResult validationResult, Model model, SessionStatus status)
     {
         model.addAttribute("title", "Form result");
 
         if(validationResult.hasErrors()) { return "form"; }
 
         model.addAttribute("user", user);
-
+        status.setComplete();
         return "result";
     }
 }
