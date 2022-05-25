@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class FormController
@@ -28,17 +26,7 @@ public class FormController
     {
         model.addAttribute("title", "Form result");
 
-        if(validationResult.hasErrors())
-        {
-            Map<String, String> errors = new HashMap<>();
-            validationResult.getFieldErrors().forEach(err ->
-            {
-                errors.put(err.getField(),"The field ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
-            });
-
-            model.addAttribute("error", errors);
-            return "form";
-        }
+        if(validationResult.hasErrors()) { return "form"; }
 
         model.addAttribute("user", user);
 
