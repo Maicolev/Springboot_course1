@@ -16,6 +16,9 @@ public class FormController
     public String form(Model model)
     {
         User user = new User();
+        user.setId(12313);
+        user.setName("Andrés");
+        user.setLastName("Perez");
         model.addAttribute("title", "Users form");
         model.addAttribute("user", user);
         return "form";
