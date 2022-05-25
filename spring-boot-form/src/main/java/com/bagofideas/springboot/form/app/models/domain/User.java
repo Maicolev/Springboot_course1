@@ -2,11 +2,13 @@ package com.bagofideas.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User
 {
-    private long id;
+    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    private String id;
 
     @NotEmpty(message = "The name cannot be empty")
     private String name;
@@ -25,11 +27,11 @@ public class User
     @Email
     private String email;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

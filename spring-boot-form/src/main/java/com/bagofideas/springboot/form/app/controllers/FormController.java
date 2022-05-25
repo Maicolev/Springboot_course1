@@ -19,7 +19,7 @@ public class FormController
     public String form(Model model)
     {
         User user = new User();
-        user.setId(12313);
+        user.setId("111.444.234-K");
         user.setName("Andrés");
         user.setLastName("Perez");
         model.addAttribute("title", "Users form");
