@@ -1,9 +1,16 @@
 package com.bagofideas.springboot.form.app.models.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User
 {
+    @NotEmpty
     private String userName;
+
+    @NotEmpty
     private String password;
+
+    @NotEmpty
     private String email;
 
     public String getUserName() {
