@@ -34,6 +34,5 @@ public class FormController
         model.addAttribute("user", user);
 
         return "result";
-
     }
 }
