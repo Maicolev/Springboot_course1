@@ -1,5 +1,7 @@
 package com.bagofideas.springboot.form.app.models.domain;
 
+import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Size;
 public class User
 {
     //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    @RegexIdentificator
     private String id;
 
     // @NotEmpty(message = "The name cannot be empty")
