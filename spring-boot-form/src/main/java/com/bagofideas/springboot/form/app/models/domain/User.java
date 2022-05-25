@@ -1,6 +1,7 @@
 package com.bagofideas.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -16,7 +17,7 @@ public class User
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
+    @NotBlank
     @Size(min=3, max=8)
     private String userName;
 
