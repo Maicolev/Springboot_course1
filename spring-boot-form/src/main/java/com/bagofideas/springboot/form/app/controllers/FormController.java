@@ -1,6 +1,8 @@
 package com.bagofideas.springboot.form.app.controllers;
 
 import com.bagofideas.springboot.form.app.models.domain.User;
+import com.bagofideas.springboot.form.app.validation.UserValidate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,9 @@ import javax.validation.Valid;
 @SessionAttributes("user")
 public class FormController
 {
+    @Autowired
+    private UserValidate validator;
+
     @GetMapping("/form")
     public String form(Model model)
     {
@@ -30,6 +35,8 @@ public class FormController
     @PostMapping("/form")
     public String process(@Valid User user, BindingResult validationResult, Model model, SessionStatus status)
     {
+        validator.validate(user,validationResult);
+
         model.addAttribute("title", "Form result");
 
         if(validationResult.hasErrors()) { return "form"; }
