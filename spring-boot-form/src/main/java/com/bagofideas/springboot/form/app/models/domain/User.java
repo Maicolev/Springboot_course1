@@ -2,8 +2,10 @@ package com.bagofideas.springboot.form.app.models.domain;
 
 import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
 import com.bagofideas.springboot.form.app.validation.Required;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 
 public class User
@@ -34,6 +36,10 @@ public class User
     @Min(5)
     @Max(5000)
     private Integer account;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
 
     public String getId() {
         return id;
@@ -83,11 +89,11 @@ public class User
         this.email = email;
     }
 
-    public Integer getAccount() {
-        return account;
-    }
+    public Integer getAccount() { return account;}
 
-    public void setAccount(Integer account) {
-        this.account = account;
-    }
+    public void setAccount(Integer account) {this.account = account; }
+
+    public Date getBirthday() { return birthday; }
+
+    public void setBirthday(Date birthday) {this.birthday = birthday;}
 }
