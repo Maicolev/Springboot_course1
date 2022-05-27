@@ -1,6 +1,7 @@
 package com.bagofideas.springboot.form.app.models.domain;
 
 import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
+import com.bagofideas.springboot.form.app.validation.Required;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +18,8 @@ public class User
     // @NotEmpty(message = "The name cannot be empty")
     private String name;
 
-    @NotEmpty
+    //@NotEmpty
+    @Required
     private String lastName;
 
     @NotBlank
@@ -27,7 +29,7 @@ public class User
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @Required
     @Email
     private String email;
 
