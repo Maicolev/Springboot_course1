@@ -3,11 +3,8 @@ package com.bagofideas.springboot.form.app.models.domain;
 import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
 import com.bagofideas.springboot.form.app.validation.Required;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 
 public class User
 {
@@ -32,6 +29,11 @@ public class User
     @Required
     @Email
     private String email;
+
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer account;
 
     public String getId() {
         return id;
@@ -79,5 +81,13 @@ public class User
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAccount() {
+        return account;
+    }
+
+    public void setAccount(Integer account) {
+        this.account = account;
     }
 }
