@@ -2,7 +2,7 @@ package com.bagofideas.springboot.form.app.models.domain;
 
 import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
 import com.bagofideas.springboot.form.app.validation.Required;
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -38,7 +38,7 @@ public class User
     private Integer account;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Future
     private Date birthday;
 
