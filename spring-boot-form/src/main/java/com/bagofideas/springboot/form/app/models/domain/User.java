@@ -39,6 +39,7 @@ public class User
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Future
     private Date birthday;
 
     public String getId() {
