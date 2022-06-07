@@ -2,10 +2,10 @@ package com.bagofideas.springboot.form.app.models.domain;
 
 import com.bagofideas.springboot.form.app.validation.RegexIdentificator;
 import com.bagofideas.springboot.form.app.validation.Required;
-//import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 
 public class User
@@ -39,8 +39,21 @@ public class User
 
     @NotNull
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future
+    @Past
     private Date birthday;
+
+    @NotNull
+    private Country country;
+
+    @NotEmpty
+    private List<Role> roles;
+
+    private Boolean enable;
+
+    @NotEmpty
+    private String gender;
+
+    private String secretValue;
 
     public String getId() {
         return id;
@@ -97,4 +110,44 @@ public class User
     public Date getBirthday() { return birthday; }
 
     public void setBirthday(Date birthday) {this.birthday = birthday;}
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSecretValue() {
+        return secretValue;
+    }
+
+    public void setSecretValue(String secretValue) {
+        this.secretValue = secretValue;
+    }
 }

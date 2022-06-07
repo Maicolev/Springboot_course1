@@ -7,12 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 
 public class RequiredValidator implements ConstraintValidator<Required,String>
 {
-
-    @Override
-    public void initialize(Required constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
-
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext)
     {
