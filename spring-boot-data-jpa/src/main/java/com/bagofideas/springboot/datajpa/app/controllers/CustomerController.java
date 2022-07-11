@@ -1,7 +1,7 @@
 package com.bagofideas.springboot.datajpa.app.controllers;
 
-import com.bagofideas.springboot.datajpa.app.models.dao.ICustomerDao;
-import com.bagofideas.springboot.datajpa.app.models.entity.Customer;
+import com.bagofideas.springboot.datajpa.app.models.entities.Customer;
+import com.bagofideas.springboot.datajpa.app.models.services.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +20,19 @@ import java.util.Map;
 public class CustomerController
 {
     @Autowired
-    private ICustomerDao customerDao;
+    private ICustomerService customerService;
 
     @RequestMapping (value = "/toList", method = RequestMethod.GET)
     public String toList(Model model)
     {
         model.addAttribute("title", "Customer list");
-        model.addAttribute("customers", customerDao.findAll());
+        model.addAttribute("customers", customerService.findAll());
         return "toList";
     }
 
     @RequestMapping(value = "/form")
     public String create (Map<String, Object> model)
     {
-        System.out.println("create");
         Customer customer = new Customer();
         model.put("customer",customer);
         model.put("title","Customer form");
@@ -43,11 +42,10 @@ public class CustomerController
     @RequestMapping(value = "/form/{id}")
     public String edit(@PathVariable(value = "id") Long id, Map<String, Object> model)
     {
-        System.out.println("edit");
         Customer customer = null;
         if(id>0)
         {
-             customer = customerDao.findOne(id);
+             customer = customerService.findOne(id);
         }
         else
         {
@@ -61,16 +59,12 @@ public class CustomerController
     @RequestMapping (value = "/form", method = RequestMethod.POST)
     public String save(@Valid Customer customer, BindingResult result, Model model, SessionStatus status)
     {
-        System.out.println("save");
-        System.out.println(customer.getId());
-        //customer.setId(5L);
-        System.out.println(customer.getName());
         if(result.hasErrors())
         {
             model.addAttribute("title", "Customer form");
             return "form";
         }
-        customerDao.save(customer);
+        customerService.save(customer);
         status.setComplete();
         return "redirect:toList";
     }
@@ -80,7 +74,7 @@ public class CustomerController
     {
         if(id > 0)
         {
-            customerDao.delete(id);
+            customerService.delete(id);
         }
         return "redirect:/toList";
     }

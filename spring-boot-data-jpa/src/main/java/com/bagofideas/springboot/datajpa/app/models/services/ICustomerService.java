@@ -1,10 +1,10 @@
-package com.bagofideas.springboot.datajpa.app.models.dao;
+package com.bagofideas.springboot.datajpa.app.models.services;
 
 import com.bagofideas.springboot.datajpa.app.models.entities.Customer;
 
 import java.util.List;
 
-public interface ICustomerDao
+public interface ICustomerService
 {
     public List<Customer> findAll();
 

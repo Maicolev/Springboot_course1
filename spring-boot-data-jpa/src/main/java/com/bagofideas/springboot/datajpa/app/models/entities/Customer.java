@@ -1,4 +1,4 @@
-package com.bagofideas.springboot.datajpa.app.models.entity;
+package com.bagofideas.springboot.datajpa.app.models.entities;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
