@@ -1,16 +1,9 @@
 package com.bagofideas.springboot.datajpa.app.models.dao;
 
 import com.bagofideas.springboot.datajpa.app.models.entities.Customer;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
-public interface ICustomerDao
+public interface ICustomerDao extends CrudRepository<Customer, Long>
 {
-    public List<Customer> findAll();
 
-    public Customer findOne(Long id);
-
-    public void save(Customer customer);
-
-    public void delete(Long id);
 }
