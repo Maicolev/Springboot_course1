@@ -2,10 +2,11 @@ package com.bagofideas.springboot.datajpa.app.models.dao;
 
 import com.bagofideas.springboot.datajpa.app.models.entity.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Repository
@@ -15,14 +16,14 @@ public class CustomerDaoImpl implements ICustomerDao
     private EntityManager entityManager;
 
     @Override
-    @Transactional//(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Customer> findAll()
     {
         return entityManager.createQuery("from Customer").getResultList();
     }
 
     @Override
-    @Transactional//(readOnly = true)
+    @Transactional(readOnly = true)
     public Customer findOne(Long id)
     {
         return entityManager.find(Customer.class, id);
@@ -32,7 +33,9 @@ public class CustomerDaoImpl implements ICustomerDao
     @Transactional
     public void save(Customer customer)
     {
-        if(customer.getId() > 0 && customer.getId() != null)
+        System.out.println("CDI");
+        System.out.println(customer.getId());
+        if(customer.getId() != null && customer.getId() > 0 )
         {
             entityManager.merge(customer);
         }

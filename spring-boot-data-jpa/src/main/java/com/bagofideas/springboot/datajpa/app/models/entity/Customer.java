@@ -4,13 +4,14 @@ package com.bagofideas.springboot.datajpa.app.models.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 public class Customer implements Serializable
 {
     //Attributes
@@ -22,9 +23,11 @@ public class Customer implements Serializable
     private String name;
 
     @NotEmpty
+    @Column(name = "last_name")
     private String lastName;
 
     @NotEmpty
+    @Email
     private String email;
 
     @NotNull

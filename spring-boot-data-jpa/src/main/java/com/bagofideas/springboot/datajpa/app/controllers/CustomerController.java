@@ -16,14 +16,14 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@SessionAttributes("Customer")
+@SessionAttributes("customer")
 public class CustomerController
 {
     @Autowired
     private ICustomerDao customerDao;
 
     @RequestMapping (value = "/toList", method = RequestMethod.GET)
-    public String ToList(Model model)
+    public String toList(Model model)
     {
         model.addAttribute("title", "Customer list");
         model.addAttribute("customers", customerDao.findAll());
@@ -31,8 +31,9 @@ public class CustomerController
     }
 
     @RequestMapping(value = "/form")
-    public String toCreate (Map<String, Object> model)
+    public String create (Map<String, Object> model)
     {
+        System.out.println("create");
         Customer customer = new Customer();
         model.put("customer",customer);
         model.put("title","Customer form");
@@ -42,6 +43,7 @@ public class CustomerController
     @RequestMapping(value = "/form/{id}")
     public String edit(@PathVariable(value = "id") Long id, Map<String, Object> model)
     {
+        System.out.println("edit");
         Customer customer = null;
         if(id>0)
         {
@@ -59,6 +61,10 @@ public class CustomerController
     @RequestMapping (value = "/form", method = RequestMethod.POST)
     public String save(@Valid Customer customer, BindingResult result, Model model, SessionStatus status)
     {
+        System.out.println("save");
+        System.out.println(customer.getId());
+        //customer.setId(5L);
+        System.out.println(customer.getName());
         if(result.hasErrors())
         {
             model.addAttribute("title", "Customer form");
