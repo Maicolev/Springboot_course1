@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -40,15 +41,21 @@ public class CustomerController
     }
 
     @RequestMapping(value = "/form/{id}")
-    public String edit(@PathVariable(value = "id") Long id, Map<String, Object> model)
+    public String edit(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash)
     {
         Customer customer = null;
         if(id>0)
         {
              customer = customerService.findOne(id);
+             if(customer == null)
+             {
+                 flash.addFlashAttribute("error","Customer id doesn't exist in the DB ");
+                 return "redirect:/toList";
+             }
         }
         else
         {
+            flash.addFlashAttribute("error","Customer id can't be zero ");
             return "redirect:/toList";
         }
         model.put("customer",customer);
@@ -57,24 +64,29 @@ public class CustomerController
     }
 
     @RequestMapping (value = "/form", method = RequestMethod.POST)
-    public String save(@Valid Customer customer, BindingResult result, Model model, SessionStatus status)
+    public String save(@Valid Customer customer, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status)
     {
         if(result.hasErrors())
         {
             model.addAttribute("title", "Customer form");
             return "form";
         }
+
+        String flashMessage = (customer.getId() != null)? "Customer modified successfully" : "Customer has been added successfully";
+
         customerService.save(customer);
         status.setComplete();
+        flash.addFlashAttribute("success",flashMessage);
         return "redirect:toList";
     }
 
     @RequestMapping(value = "/delete/{id}")
-    public String delete(@PathVariable(value = "id") Long id)
+    public String delete(@PathVariable(value = "id") Long id,RedirectAttributes flash)
     {
         if(id > 0)
         {
             customerService.delete(id);
+            flash.addFlashAttribute("success","Customer has been deleted successfully");
         }
         return "redirect:/toList";
     }
