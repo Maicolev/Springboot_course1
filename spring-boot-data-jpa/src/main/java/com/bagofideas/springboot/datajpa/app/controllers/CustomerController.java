@@ -3,13 +3,13 @@ package com.bagofideas.springboot.datajpa.app.controllers;
 import com.bagofideas.springboot.datajpa.app.models.entities.Customer;
 import com.bagofideas.springboot.datajpa.app.models.services.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,11 +23,16 @@ public class CustomerController
     @Autowired
     private ICustomerService customerService;
 
+    public static final int PAGE_NUM = 6;
+
     @RequestMapping (value = "/toList", method = RequestMethod.GET)
-    public String toList(Model model)
+    public String toList(@RequestParam(name = "page",defaultValue = "0") int page, Model model)
     {
+        Pageable pageRequest = PageRequest.of(page,PAGE_NUM);
+        Page<Customer>  customers = customerService.findAll(pageRequest);
+
         model.addAttribute("title", "Customer list");
-        model.addAttribute("customers", customerService.findAll());
+        model.addAttribute("customers", customers);
         return "toList";
     }
 
