@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+<h2
+        class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+        th:text="${error}"></h2>
+<div class="container">
+    <h1
+            class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+            th:text="${titulo}"></h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Tipo doc</th>
+            <th>Documento</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Número celular</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="mecanico: ${mecanicosPriorizadosHoras}">
+                <td th:text="${mecanico.tipoDocumento}"></td>
+                <td th:text="${mecanico.documento}"></td>
+                <td th:text="${mecanico.primerNombre} + ' ' + ${mecanico.segundoNombre}"></td>
+                <td th:text="${mecanico.primerApellido} + ' ' + ${mecanico.segundoApellido}"></td>
+                <td th:text="${mecanico.celular}"></td>
+                <td th:text="${mecanico.email}"></td>
+                <td><a class="btn btn-danger btn-xs" th:href="@{/listarPrioridades/}" th:text="'Asignar'" onclick="return confirm('En desarrollo...');"></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

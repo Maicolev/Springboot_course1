@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+	<h2
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${error}"></h2>
+	<div class="container">
+		<h1
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
+		<p><a th:href="@{/form}" class="btn btn-success btn-xs">Crear mecanico</a></p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Tipo doc</th>
+					<th>Documento</th>
+					<th>Primer nombre</th>
+					<th>Segundo nombre</th>
+					<th>Primer apellido</th>
+					<th>Segundo Apellido</th>
+					<th>Número celular</th>
+					<th>Dirección</th>
+					<th>Email</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="mecanico: ${mecanicos}">
+					<td th:text="${mecanico.tipoDocumento}"></td>
+					<td th:text="${mecanico.documento}"></td>
+					<td th:text="${mecanico.primerNombre}"></td>
+					<td th:text="${mecanico.segundoNombre}"></td>
+					<td th:text="${mecanico.primerApellido}"></td>
+					<td th:text="${mecanico.segundoApellido}"></td>
+					<td th:text="${mecanico.celular}"></td>
+					<td th:text="${mecanico.direccion}"></td>
+					<td th:text="${mecanico.email}"></td>
+					<td th:text="${mecanico.estado}"></td>
+					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${mecanico.documento}" th:text="'editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${mecanico.documento}" th:text="'eliminar'" onclick="return confirm('¿Estás seguro que quieres eliminar? Asegurate que el mecanico nunca haya tenido asignado un mantenimiento para poder eliminar');"></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
